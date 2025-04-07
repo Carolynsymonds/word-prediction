@@ -233,7 +233,7 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
-    trained_rnn = train(epochs=10,train_loader=train_loader, val_loader=val_loader, model=model, optimizer=optimizer, criterion=criterion, word_index=word_index)
+    trained_rnn = train(epochs=40,train_loader=train_loader, val_loader=val_loader, model=model, optimizer=optimizer, criterion=criterion, word_index=word_index)
 
     save_model('trained_rnn', trained_rnn)
     print('Model Trained and Saved')
