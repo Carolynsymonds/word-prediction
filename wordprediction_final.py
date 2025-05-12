@@ -106,7 +106,8 @@ if __name__ == "__main__":
     main()
 
 ## Model Performance
-# Metric	Progression (Epoch 1 → 30)
-# Training Loss	7.40 → 2.44 ✅ (massive improvement)
-# Validation Loss	6.69 → 2.28 ✅ (steady drop)
-# Accuracy	6.8% → 45.0% on train, 48.3% on val ✅
+# Metric	            Epoch 1	    Epoch 61	Comment
+# Train Accuracy	    7.5%	    56.0%	    Strong and consistent improvement
+# Validation Accuracy	9.8%	    57.9%	    Tracks training accuracy → good generalization
+# Train Loss	        7.41	    1.79	    Decreasing smoothly
+# Validation Loss	    6.74	    1.68	    Consistent drop with minor fluctuations

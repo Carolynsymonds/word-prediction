@@ -12,6 +12,7 @@ import torch.nn as nn
 from torchinfo import summary
 from torch.utils.data import DataLoader, random_split, TensorDataset
 from model_torch import LSTMModel
+import string
 
 
 device = torch.device('cpu')
@@ -24,20 +25,25 @@ def plot(train_losses, val_losses, val_accuracy):
     plt.ylabel('Loss')
     plt.title('Training Loss per Epoch')
     plt.grid(True)
+    plt.savefig('train_loss.png')
     plt.show()
+
     # Plot Val loss
     plt.plot(range(1, len(val_losses) + 1), val_losses)
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.title('Validation Loss per Epoch')
     plt.grid(True)
+    plt.savefig('val_loss.png')
     plt.show()
+
     # Plot Val accuracy
     plt.plot(range(1, len(val_accuracy) + 1), val_accuracy)
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.title('Validation Accuracy per Epoch')
     plt.grid(True)
+    plt.savefig('val_accuracy.png')
     plt.show()
 
 def save_model(filename, model):
@@ -64,6 +70,27 @@ def tokenize(data):
         title = normalize_string(title)
         tokens = word_tokenize(title)
         all_tokens.extend(tokens)
+
+    # Count token frequency
+    token_counts = Counter(all_tokens)
+
+    # Create word index with <OOV> token
+    word_index = {'<OOV>': 1}
+    for i, (word, count) in enumerate(token_counts.items(), start=2):  # start=2 because 1 is <OOV>
+        word_index[word] = i
+
+    # Final vocab size
+    vocab_size = len(word_index) + 1  # +1 for padding index (usually 0)
+
+    return vocab_size, word_index
+def tokenize2(data):
+    # Clean and tokenize the text
+    data = data.lower()  # lowercase
+    all_tokens = []
+
+    data = normalize_string(data)
+    tokens = word_tokenize(data)
+    all_tokens.extend(tokens)
 
     # Count token frequency
     token_counts = Counter(all_tokens)
@@ -133,9 +160,9 @@ def train(epochs, train_loader, val_loader, model, optimizer, criterion, word_in
                 print("Target:", target[0])
                 print("Predicted:", predicted[0])
 
-                decoded_input = [index_to_word.get(idx.item(), '<UNK>') for idx in inputs[0]]
-                decoded_target = index_to_word.get(target[0].item(), '<UNK>')
-                decoded_prediction = index_to_word.get(predicted[0].item(), '<UNK>')
+                decoded_input = [index_to_word.get(idx.item(), ' ') for idx in inputs[0]]
+                decoded_target = index_to_word.get(target[0].item(), ' ')
+                decoded_prediction = index_to_word.get(predicted[0].item(), ' ')
 
                 print("Decoded input:", " ".join(decoded_input))
                 print("Decoded target word:", decoded_target)
@@ -181,10 +208,37 @@ def train(epochs, train_loader, val_loader, model, optimizer, criterion, word_in
 
     plot(train_epoch_losses, val_epoch_losses, val_epoch_accuracy)
     return model
+def load_and_combine_snippets(filenames, column='snippet'):
+    print("Loading and cleaning data...")
 
+    formatted_headlines = []
+
+    for file in filenames:
+        try:
+            df = pd.read_csv(f"Transformers/data/{file}")
+            print(f"Loaded {file} with {df.shape[0]} rows.")
+            formatted_headlines.extend(df[column].dropna().tolist())
+        except Exception as e:
+            print(f"Error loading {file}: {e}")
+
+    print(f"Total combined headlines: {len(formatted_headlines)}")
+    return formatted_headlines
+def remove_puntuations(text):
+    translator = str.maketrans('', '', string.punctuation)
+    return text.translate(translator)
 def main():
     print("Loading and cleaning data...")
     data = pd.read_csv('./medium_data.csv')
+    files = [
+        'ArticlesMarch2018.csv',
+        'ArticlesApril2017.csv'
+    ]
+
+    formatted_headlines = load_and_combine_snippets(files)
+    formated_text = '\n'.join(formatted_headlines)
+    formated_text = remove_puntuations(formated_text)
+    formated_text = formated_text.lower()
+
     print(f"Original records: {data.shape[0]}")
 
     data.dropna(subset=['title'], inplace=True)
@@ -196,8 +250,13 @@ def main():
     print(f"Vocabulary size: {vocab_size}")
     print(f"Cleaned records: {data.shape[0]}")
 
+    print("Tokenizing text...")
+    vocab_size, word_index = tokenize2(formated_text)
+    print(f"Vocabulary size: {vocab_size}")
+    print(f"Cleaned records: {data.shape[0]}")
+
     sequences = []
-    for line in tqdm(data['title'], desc="Generating sequences"):
+    for line in tqdm(formated_text.split('\n'), desc="Generating sequences"):
         token_list = text_to_sequence(line, word_index)  # manual text to sequence
 
         for i in range(1, len(token_list)):
@@ -243,26 +302,20 @@ def main():
     seed_text = "implementation of"
     num_words = 3
 
-    # for _ in range(num_words):
-    #     token_list = text_to_sequence(seed_text, word_index)  # manual text to sequence
-    #     padded = keras_like_pad_sequences([token_list])
-    #
-    #     prediction = model.predict(padded, verbose=0)[0]
-    #
-    #     top_indices = prediction.argsort()[-3:][::-1]
-    #     top_words = [word for word, index in word_index.items() if index in top_indices]
-    #
-    #     seed_text += " " + top_words[0]  # Pick the best one
-    #     print(f"Top suggestions: {top_words}")
-    #
-    # print("Final generated text:")
-    # print(seed_text)
+    for _ in range(num_words):
+        token_list = text_to_sequence(seed_text, word_index)  # manual text to sequence
+        padded = keras_like_pad_sequences([token_list])
+
+        prediction = model.predict(padded, verbose=0)[0]
+
+        top_indices = prediction.argsort()[-3:][::-1]
+        top_words = [word for word, index in word_index.items() if index in top_indices]
+
+        seed_text += " " + top_words[0]  # Pick the best one
+        print(f"Top suggestions: {top_words}")
+
+    print("Final generated text:")
+    print(seed_text)
 
 if __name__ == "__main__":
     main()
-
-## Model Performance
-# Metric	Progression (Epoch 1 → 30)
-# Training Loss	7.40 → 2.44 ✅ (massive improvement)
-# Validation Loss	6.69 → 2.28 ✅ (steady drop)
-# Accuracy	6.8% → 45.0% on train, 48.3% on val ✅
