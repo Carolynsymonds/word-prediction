@@ -1,0 +1,17 @@
+# config.yaml
+
+# Model parameters
+embed_dim: 200
+hidden_dim: 256
+num_layers: 2
+dropout: 0.2
+
+# Training parameters
+learning_rate: 0.001
+num_epochs: 10
+batch_size: 32
+weight_decay: 0.0
+
+# Paths
+checkpoint_dir: "checkpoints"
+output_dir: "outputs/visualizations"
