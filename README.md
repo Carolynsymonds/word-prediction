@@ -43,7 +43,6 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 # Project structure index
 ```
 WordPrediction-LSTM+attention/
-├── checkpoints/           # Saved models
 ├── metrics/               # Visualizations and predicted depth maps
 │── outputs/
    ├──visualizations  
@@ -54,14 +53,13 @@ WordPrediction-LSTM+attention/
 ├── train.py               # Training loop with logging, validation, and visualization
 ├── utils.py               # Utilities: checkpoint saving, visualization, etc.
 ├── evaluation.py          # Run model, predict depth based on unseen images.
-│
-├── config.yaml            # Configuration file with tuned hyperparameters
+├── best_model.pth         # Model saved    
+├── flatconfig.yaml            # Configuration file with tuned hyperparameters
 │
 |
 |
 │
 WordPrediction-baseline
-├── checkpoints/           # Saved models
 ├── metrics/               # Visualizations and predicted depth maps
 │── outputs/
    ├──visualizations  
@@ -72,8 +70,8 @@ WordPrediction-baseline
 ├── train.py               # Training loop with logging, validation, and visualization
 ├── utils.py               # Utilities: checkpoint saving, visualization, etc.
 ├── evaluation.py          # Run model, predict depth based on unseen images.
-│
-├── config.yaml            # Configuration file with tuned hyperparameters
+├── best_lstm.pth         # Model saved   
+├── flatconfig.yaml            # Configuration file with tuned hyperparameters
 |
 │
 WordPrediction-TransformerBaseline
