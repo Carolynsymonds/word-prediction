@@ -37,8 +37,8 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 
 ## Dataset
 
-[https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
-
+[[https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
+](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
 
 # Project structure index
 ```
