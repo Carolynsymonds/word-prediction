@@ -21,17 +21,17 @@ There are three architectures:
 
 - To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
 
-### Training:
+## Training
 
 Each model has its own train.py file located inside its corresponding folder.
 
 To adjust hyperparameters like number of epochs, batch size, or learning rate, modify the config.yaml file located inside each model's folder.
 
-### Evaluation:
+## Evaluation
 
 Each architecture has their best model saved under their folder. Defined as prediction.
 
-### Setup:
+## Setup
 
 Install the required dependencies by running setup.sh (or manually using pip install -r requirements.txt).
 
@@ -47,31 +47,27 @@ WordPrediction-LSTM+attention/
 │── outputs/
    ├──visualizations  
 ├── dataset.py             # Dataset classes and data loading logic
-├── losses.py              # Custom loss functions
 ├── metrics.py             # Evaluation metrics
 ├── models.py               
 ├── train.py               # Training loop with logging, validation, and visualization
 ├── utils.py               # Utilities: checkpoint saving, visualization, etc.
 ├── evaluation.py          # Run model, predict depth based on unseen images.
 ├── best_model.pth         # Model saved    
-├── flatconfig.yaml            # Configuration file with tuned hyperparameters
+├── flatconfig.yaml        # Configuration file with tuned hyperparameters
 │
-|
-|
 │
 WordPrediction-baseline
 ├── metrics/               # Visualizations and predicted depth maps
 │── outputs/
    ├──visualizations  
 ├── dataset.py             # Dataset classes and data loading logic
-├── losses.py              # Custom loss functions
 ├── metrics.py             # Evaluation metrics
 ├── models.py               
 ├── train.py               # Training loop with logging, validation, and visualization
 ├── utils.py               # Utilities: checkpoint saving, visualization, etc.
 ├── evaluation.py          # Run model, predict depth based on unseen images.
-├── best_lstm.pth         # Model saved   
-├── flatconfig.yaml            # Configuration file with tuned hyperparameters
+├── best_lstm.pth          # Model saved   
+├── flatconfig.yaml        # Configuration file with tuned hyperparameters
 |
 │
 WordPrediction-TransformerBaseline
@@ -80,12 +76,11 @@ WordPrediction-TransformerBaseline
 │── outputs/
    ├──visualizations  
 ├── dataset.py             # Dataset classes and data loading logic
-├── losses.py              # Custom loss functions
 ├── metrics.py             # Evaluation metrics
 ├── models.py               
 ├── train.py               # Training loop with logging, validation, and visualization
 ├── utils.py               # Utilities: checkpoint saving, visualization, etc.
 ├── evaluation.py          # Run model, predict depth based on unseen images.
-│
 ├── config.yaml            # Configuration file with tuned hyperparameters
+
 ```
