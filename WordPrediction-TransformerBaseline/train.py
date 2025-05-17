@@ -5,7 +5,7 @@ from dataset import load_dataloader
 from model import TextGen,TextGenSingleAttention
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 from metrics import MetricsLogger
-from utils import plot_metrics, load_config, LabelSmoothingLoss
+from utils import plot_metrics, load_config
 
 def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size):
     model.train()
@@ -32,7 +32,6 @@ def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
             running_loss += loss.detach().cpu().numpy()
-
 
             # Metrics
             # Compute accuracy
@@ -113,9 +112,9 @@ if __name__ == "__main__":
     # Option 1: Multi-head attention
     model = TextGen(
         vocab_size=vocab_size,
-        embed_dim=100,
-        num_layers=2,
-        num_heads=2,
+        embed_dim=256,
+        num_layers=4,
+        num_heads=8,
         sequence_length=sequence_length
     ).to(device)
 
@@ -128,7 +127,6 @@ if __name__ == "__main__":
     # ).to(device)
 
     criterion = nn.CrossEntropyLoss()
-    # criterion = LabelSmoothingLoss(smoothing=0.1, vocab_size=vocab_size)
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     print(model)
