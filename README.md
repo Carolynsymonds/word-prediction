@@ -17,6 +17,10 @@ There are three architectures:
 - WordPrediction-LSTMBaseline: is prepared to train the Architecture 2/LSTM from Report.
 - WordPrediction-TransformerBaseline: is prepared to train the Architecture 5 from Report.
 
+## Inference
+
+- To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
+
 ### Training:
 
 Each model has its own train.py file located inside its corresponding folder.
@@ -34,10 +38,6 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 ## Dataset
 
 [https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
-
-### Inference
-
-- To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
 
 
 # Project structure index
