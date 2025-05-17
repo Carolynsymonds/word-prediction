@@ -43,7 +43,7 @@ def load_and_combine_snippets(filenames, column='snippet'):
 
     return formatted_headlines
 
-def load_dataloader(sequence_length, batch_size, option=1):
+def load_dataloader(sequence_length, batch_size, option=2):
     files = [
         'ArticlesMarch2018.csv',
         'ArticlesApril2017.csv',

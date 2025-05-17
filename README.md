@@ -12,7 +12,14 @@ Before running the project, please follow these steps carefully:
 
 ### Model versions:
 
-There are three architectures: WordPrediction-LSTM+attention, WordPrediction-LSTMBaseline and WordPrediction-TransformerBaseline
+There are three architectures: 
+- WordPrediction-LSTM+attention: is prepared to train the Architecture 1/LSTM from Report.
+- WordPrediction-LSTMBaseline: is prepared to train the Architecture 2/LSTM from Report.
+- WordPrediction-TransformerBaseline: is prepared to train the Architecture 5 from Report.
+
+## Inference
+
+- To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
 
 ### Training:
 
@@ -33,7 +40,7 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 [https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
 
 
-# 🗂 Project structure index
+# Project structure index
 ```
 WordPrediction-LSTM+attention/
 ├── checkpoints/           # Saved models
