@@ -28,3 +28,55 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 
 # Dataset
 [https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
+
+
+# 🗂 Project structure index
+
+WordPrediction-LSTM+attention/
+├── checkpoints/           # Saved models
+├── metrics/               # Visualizations and predicted depth maps
+│── outputs/
+   ├──visualizations  
+├── dataset.py             # Dataset classes and data loading logic
+├── losses.py              # Custom loss functions
+├── metrics.py             # Evaluation metrics
+├── models.py               
+├── train.py               # Training loop with logging, validation, and visualization
+├── utils.py               # Utilities: checkpoint saving, visualization, etc.
+├── evaluation.py          # Run model, predict depth based on unseen images.
+│
+├── config.yaml            # Configuration file with tuned hyperparameters
+│
+|
+|
+│
+WordPrediction-baseline
+├── checkpoints/           # Saved models
+├── metrics/               # Visualizations and predicted depth maps
+│── outputs/
+   ├──visualizations  
+├── dataset.py             # Dataset classes and data loading logic
+├── losses.py              # Custom loss functions
+├── metrics.py             # Evaluation metrics
+├── models.py               
+├── train.py               # Training loop with logging, validation, and visualization
+├── utils.py               # Utilities: checkpoint saving, visualization, etc.
+├── evaluation.py          # Run model, predict depth based on unseen images.
+│
+├── config.yaml            # Configuration file with tuned hyperparameters
+|
+│
+WordPrediction-TransformerBaseline
+├── checkpoints/           # Saved models
+├── metrics/               # Visualizations and predicted depth maps
+│── outputs/
+   ├──visualizations  
+├── dataset.py             # Dataset classes and data loading logic
+├── losses.py              # Custom loss functions
+├── metrics.py             # Evaluation metrics
+├── models.py               
+├── train.py               # Training loop with logging, validation, and visualization
+├── utils.py               # Utilities: checkpoint saving, visualization, etc.
+├── evaluation.py          # Run model, predict depth based on unseen images.
+│
+├── config.yaml            # Configuration file with tuned hyperparameters
