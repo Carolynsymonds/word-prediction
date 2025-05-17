@@ -1,0 +1,650 @@
+
+
+
+
+/usr/local/bin/python3.11 /Users/carolynsymonds/PycharmProjects/word-prediction/wordprediction_torch.py
+Loading and cleaning data...
+Original records: 6508
+Tokenizing text...
+Vocabulary size: 7649
+Cleaned records: 6504
+Generating sequences: 100%|██████████| 6504/6504 [00:00<00:00, 283052.53it/s]
+Total sequences: 48788
+Creating features and labels...
+Building the arq...
+LSTMModel(
+  (embedding): Embedding(7649, 128, padding_idx=0)
+  (bilstm): LSTM(128, 150, batch_first=True, bidirectional=True)
+  (lstm): LSTM(300, 100)
+  (dropout): Dropout(p=0.3, inplace=False)
+  (fc): Linear(in_features=100, out_features=7649, bias=True)
+)
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+LSTMModel                                [32, 7649]                --
+├─Embedding: 1-1                         [32, 37, 128]             979,072
+├─LSTM: 1-2                              [32, 37, 300]             336,000
+├─LSTM: 1-3                              [32, 37, 100]             160,800
+├─Dropout: 1-4                           [32, 100]                 --
+├─Linear: 1-5                            [32, 7649]                772,549
+==========================================================================================
+Total params: 2,248,421
+Trainable params: 2,248,421
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 644.26
+==========================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 6.96
+Params size (MB): 8.99
+Estimated Total Size (MB): 15.96
+==========================================================================================
+/Users/carolynsymonds/PycharmProjects/word-prediction/wordprediction_torch.py:227: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  y_tensor = torch.tensor(y, dtype=torch.long)
+Epoch 1:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,  488, 1312,  228,   40, 1313, 1311,   23,   58, 1314])
+Target: tensor(1315)
+Predicted: tensor(4127)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> lessons learnt as an interaction designer in the public
+Decoded target word: sector
+Decoded prediction: add
+-------------------------
+
+Epoch 1: 100%|██████████| 1220/1220 [03:18<00:00,  6.13it/s]
+Epoch 1, Train Loss: 6.9694, Train Acc: 7.37%
+Val Loss: 6.6915, Val Acc: 10.81%
+Epoch 2:   0%|          | 0/1220 [00:00<?, ?it/s]Validation loss decreased (inf --> 6.691544). Saving model ...
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,  356,  940,    9,  907, 1266,    4])
+Target: tensor(122)
+Predicted: tensor(1)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> getting started with google bigquery s
+Decoded target word: machine
+Decoded prediction: <OOV>
+-------------------------
+
+Epoch 2: 100%|██████████| 1220/1220 [07:47<00:00,  2.61it/s]
+Epoch 2, Train Loss: 6.3240, Train Acc: 13.13%
+Val Loss: 6.4460, Val Acc: 14.47%
+Validation loss decreased (6.691544 --> 6.445951). Saving model ...
+Epoch 3:   0%|          | 1/1220 [00:00<04:04,  4.99it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,   58,  486, 4505, 4506])
+Target: tensor(58)
+Predicted: tensor(35)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> the first paragraph hooks
+Decoded target word: the
+Decoded prediction: of
+-------------------------
+
+Epoch 3: 100%|██████████| 1220/1220 [06:46<00:00,  3.00it/s]
+Epoch 3, Train Loss: 6.0204, Train Acc: 15.53%
+Val Loss: 6.2964, Val Acc: 15.48%
+Epoch 4:   0%|          | 0/1220 [00:00<?, ?it/s]Validation loss decreased (6.445951 --> 6.296355). Saving model ...
+Epoch 4:   0%|          | 1/1220 [00:00<09:21,  2.17it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0, 4186, 4187, 1129,    9, 2275])
+Target: tensor(1191)
+Predicted: tensor(44)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> supporting skim reading with natural
+Decoded target word: language
+Decoded prediction: for
+-------------------------
+
+Epoch 4: 100%|██████████| 1220/1220 [06:45<00:00,  3.01it/s]
+Epoch 4, Train Loss: 5.7767, Train Acc: 16.75%
+Val Loss: 6.1938, Val Acc: 16.23%
+Epoch 5:   0%|          | 0/1220 [00:00<?, ?it/s]Validation loss decreased (6.296355 --> 6.193829). Saving model ...
+Epoch 5:   0%|          | 1/1220 [00:00<10:37,  1.91it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0, 1239,  887,  767,  217,  360])
+Target: tensor(40)
+Predicted: tensor(6)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> forget role models you need
+Decoded target word: an
+Decoded prediction: to
+-------------------------
+
+Epoch 5: 100%|██████████| 1220/1220 [06:40<00:00,  3.05it/s]
+Epoch 5, Train Loss: 5.5567, Train Acc: 17.82%
+Val Loss: 6.1368, Val Acc: 16.65%
+Epoch 6:   0%|          | 0/1220 [00:00<?, ?it/s]Validation loss decreased (6.193829 --> 6.136806). Saving model ...
+
+--- First Batch Debug ---
+Input (token IDs): tensor([ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 72])
+Target: tensor(1151)
+Predicted: tensor(73)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> i
+Decoded target word: m
+Decoded prediction: learned
+-------------------------
+
+Epoch 6: 100%|██████████| 1220/1220 [06:58<00:00,  2.92it/s]
+Epoch 6, Train Loss: 5.3526, Train Acc: 18.83%
+Val Loss: 6.1060, Val Acc: 16.85%
+Validation loss decreased (6.136806 --> 6.106044). Saving model ...
+Epoch 7:   0%|          | 1/1220 [00:00<08:46,  2.31it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0, 174, 640,  44,  58, 978, 217, 264])
+Target: tensor(200)
+Predicted: tensor(44)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> be there for the people you care
+Decoded target word: about
+Decoded prediction: for
+-------------------------
+
+Epoch 7: 100%|██████████| 1220/1220 [07:06<00:00,  2.86it/s]
+Epoch 7, Train Loss: 5.1583, Train Acc: 19.98%
+Val Loss: 6.0969, Val Acc: 17.34%
+Epoch 8:   0%|          | 0/1220 [00:00<?, ?it/s]Validation loss decreased (6.106044 --> 6.096945). Saving model ...
+
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 136,
+         69,  70, 136,  70,   1, 136,   2, 521])
+Target: tensor(541)
+Predicted: tensor(100)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup strong markup <OOV> strong a good
+Decoded target word: literary
+Decoded prediction: design
+-------------------------
+
+Epoch 8: 100%|██████████| 1220/1220 [07:29<00:00,  2.71it/s]
+Epoch 8, Train Loss: 4.9712, Train Acc: 21.26%
+Epoch 9:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.1040, Val Acc: 17.51%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,  440,   72,   45, 1406])
+Target: tensor(84)
+Predicted: tensor(9)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> part i data visualization
+Decoded target word: using
+Decoded prediction: with
+-------------------------
+
+Epoch 9: 100%|██████████| 1220/1220 [00:52<00:00, 23.28it/s]
+Epoch 9, Train Loss: 4.7929, Train Acc: 22.44%
+Val Loss: 6.1103, Val Acc: 17.89%
+Epoch 10:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+        239, 511,  57,  58, 471,   6, 123,  45])
+Target: tensor(107)
+Predicted: tensor(107)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> why motivation is the key to learning data
+Decoded target word: science
+Decoded prediction: science
+-------------------------
+
+Epoch 10: 100%|██████████| 1220/1220 [00:52<00:00, 23.12it/s]
+Epoch 10, Train Loss: 4.6199, Train Acc: 23.69%
+Epoch 11:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.1239, Val Acc: 18.13%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0, 4934])
+Target: tensor(38)
+Predicted: tensor(38)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> drupal
+Decoded target word: and
+Decoded prediction: and
+-------------------------
+
+Epoch 11: 100%|██████████| 1220/1220 [00:50<00:00, 24.02it/s]
+Epoch 11, Train Loss: 4.4565, Train Acc: 24.85%
+Val Loss: 6.1431, Val Acc: 18.56%
+Epoch 12:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,   14,   20,   72, 6892,  176])
+Target: tensor(1723)
+Predicted: tensor(69)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> on how i acknowledge human
+Decoded target word: based
+Decoded prediction: class
+-------------------------
+
+Epoch 12: 100%|██████████| 1220/1220 [00:49<00:00, 24.70it/s]
+Epoch 12, Train Loss: 4.3015, Train Acc: 25.97%
+Epoch 13:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.1765, Val Acc: 18.58%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0, 1025,    1,    4, 2071,  379, 2791,  175])
+Target: tensor(301)
+Predicted: tensor(1584)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> forever <OOV> s fade should worry more
+Decoded target word: than
+Decoded prediction: productive
+-------------------------
+
+Epoch 13: 100%|██████████| 1220/1220 [00:51<00:00, 23.51it/s]
+Epoch 13, Train Loss: 4.1515, Train Acc: 27.42%
+Val Loss: 6.2001, Val Acc: 18.86%
+Epoch 14:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,  830,  283,  832,   35, 1203,   84, 3506])
+Target: tensor(45)
+Predicted: tensor(45)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> forecasting future prices of cryptocurrency using historical
+Decoded target word: data
+Decoded prediction: data
+-------------------------
+
+Epoch 14: 100%|██████████| 1220/1220 [00:48<00:00, 25.24it/s]
+Epoch 14, Train Loss: 4.0086, Train Acc: 28.64%
+Epoch 15:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.2434, Val Acc: 18.83%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,  455,  217, 3531,   29,   45,  767,   44, 2044, 3777])
+Target: tensor(64)
+Predicted: tensor(6)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> do you check your data models for accuracy standards
+Decoded target word: if
+Decoded prediction: to
+-------------------------
+
+Epoch 15: 100%|██████████| 1220/1220 [00:49<00:00, 24.54it/s]
+Epoch 15, Train Loss: 3.8709, Train Acc: 30.09%
+Epoch 16:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.2702, Val Acc: 18.79%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0, 1746,   44, 1505])
+Target: tensor(98)
+Predicted: tensor(1289)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strategies for global
+Decoded target word: optimization
+Decoded prediction: components
+-------------------------
+
+Epoch 16: 100%|██████████| 1220/1220 [00:48<00:00, 25.23it/s]
+Epoch 16, Train Loss: 3.7386, Train Acc: 31.42%
+Val Loss: 6.3087, Val Acc: 18.75%
+Epoch 17:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+Target: tensor(489)
+Predicted: tensor(254)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <OOV>
+Decoded target word: year
+Decoded prediction: ways
+-------------------------
+
+Epoch 17: 100%|██████████| 1220/1220 [00:50<00:00, 24.12it/s]
+Epoch 17, Train Loss: 3.6140, Train Acc: 32.99%
+Val Loss: 6.3474, Val Acc: 18.92%
+Epoch 18:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,  136,
+          69,   70,  136,   70,    1,  136,  234,  235,   21, 1314, 6152, 2897])
+Target: tensor(6153)
+Predicted: tensor(200)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup strong markup <OOV> strong don t use public usb charging
+Decoded target word: stations
+Decoded prediction: about
+-------------------------
+
+Epoch 18: 100%|██████████| 1220/1220 [00:54<00:00, 22.47it/s]
+Epoch 18, Train Loss: 3.4924, Train Acc: 34.47%
+Epoch 19:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.3893, Val Acc: 18.64%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0, 2967])
+Target: tensor(44)
+Predicted: tensor(44)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> tricks
+Decoded target word: for
+Decoded prediction: for
+-------------------------
+
+Epoch 19: 100%|██████████| 1220/1220 [00:48<00:00, 25.20it/s]
+Epoch 19, Train Loss: 3.3752, Train Acc: 36.07%
+Epoch 20:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.4229, Val Acc: 18.83%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0, 136,  69,  70])
+Target: tensor(136)
+Predicted: tensor(136)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup
+Decoded target word: strong
+Decoded prediction: strong
+-------------------------
+
+Epoch 20: 100%|██████████| 1220/1220 [04:17<00:00,  4.74it/s]
+Epoch 20, Train Loss: 3.2676, Train Acc: 37.80%
+Val Loss: 6.4608, Val Acc: 18.72%
+Epoch 21:   0%|          | 1/1220 [00:00<08:35,  2.37it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    1,  705, 1114,  239, 5716,   14,   29, 5717])
+Target: tensor(1285)
+Predicted: tensor(578)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <OOV> top reasons why relying on your applicant
+Decoded target word: tracking
+Decoded prediction: book
+-------------------------
+
+Epoch 21: 100%|██████████| 1220/1220 [06:41<00:00,  3.04it/s]
+Epoch 21, Train Loss: 3.1595, Train Acc: 39.45%
+Epoch 22:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.5047, Val Acc: 18.92%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0, 1203])
+Target: tensor(890)
+Predicted: tensor(890)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> cryptocurrency
+Decoded target word: price
+Decoded prediction: price
+-------------------------
+
+Epoch 22: 100%|██████████| 1220/1220 [06:32<00:00,  3.11it/s]
+Epoch 22, Train Loss: 3.0582, Train Acc: 41.42%
+Val Loss: 6.5386, Val Acc: 18.72%
+Epoch 23:   0%|          | 1/1220 [00:00<08:41,  2.34it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,   29, 1107,  277])
+Target: tensor(119)
+Predicted: tensor(119)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> your imaginary boundaries
+Decoded target word: are
+Decoded prediction: are
+-------------------------
+
+Epoch 23: 100%|██████████| 1220/1220 [07:45<00:00,  2.62it/s]
+Epoch 23, Train Loss: 2.9602, Train Acc: 43.15%
+Val Loss: 6.5866, Val Acc: 18.55%
+Epoch 24:   0%|          | 1/1220 [00:00<10:47,  1.88it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0, 4842])
+Target: tensor(23)
+Predicted: tensor(23)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> automation
+Decoded target word: in
+Decoded prediction: in
+-------------------------
+
+Epoch 24: 100%|██████████| 1220/1220 [04:15<00:00,  4.77it/s]
+Epoch 24, Train Loss: 2.8686, Train Acc: 44.75%
+Val Loss: 6.6323, Val Acc: 18.79%
+Epoch 25:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0, 687, 688,  23,  40])
+Target: tensor(689)
+Predicted: tensor(42)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> increasing demand in an
+Decoded target word: emerging
+Decoded prediction: introduction
+-------------------------
+
+Epoch 25: 100%|██████████| 1220/1220 [07:49<00:00,  2.60it/s]
+Epoch 25, Train Loss: 2.7797, Train Acc: 46.62%
+Val Loss: 6.6700, Val Acc: 18.45%
+Epoch 26:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,  136,   69,   70,  136,   70,    1,  136, 4329,    4])
+Target: tensor(4330)
+Predicted: tensor(63)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup strong markup <OOV> strong ico s
+Decoded target word: separating
+Decoded prediction: what
+-------------------------
+
+Epoch 26: 100%|██████████| 1220/1220 [08:54<00:00,  2.28it/s]
+Epoch 26, Train Loss: 2.6936, Train Acc: 48.31%
+Val Loss: 6.7095, Val Acc: 18.37%
+Epoch 27:   0%|          | 1/1220 [00:00<10:16,  1.98it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,   20,    6, 1917,   29, 1791,    6,   40])
+Target: tensor(3594)
+Predicted: tensor(1233)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> how to pitch your article to an
+Decoded target word: editor
+Decoded prediction: audience
+-------------------------
+
+Epoch 27: 100%|██████████| 1220/1220 [07:37<00:00,  2.67it/s]
+Epoch 27, Train Loss: 2.6133, Train Acc: 49.91%
+Epoch 28:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.7390, Val Acc: 18.42%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2])
+Target: tensor(195)
+Predicted: tensor(5)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> a
+Decoded target word: culture
+Decoded prediction: guide
+-------------------------
+
+Epoch 28: 100%|██████████| 1220/1220 [00:57<00:00, 21.27it/s]
+Epoch 28, Train Loss: 2.5360, Train Acc: 51.21%
+Val Loss: 6.7734, Val Acc: 18.35%
+Epoch 29:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0, 136,  69,  70, 136,  70,   1, 136])
+Target: tensor(7144)
+Predicted: tensor(58)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup strong markup <OOV> strong
+Decoded target word: mona
+Decoded prediction: the
+-------------------------
+
+Epoch 29: 100%|██████████| 1220/1220 [01:01<00:00, 19.85it/s]
+Epoch 29, Train Loss: 2.4626, Train Acc: 52.54%
+Epoch 30:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.8234, Val Acc: 18.44%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,  253, 1668,   74])
+Target: tensor(2)
+Predicted: tensor(2)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> writing advice from
+Decoded target word: a
+Decoded prediction: a
+-------------------------
+
+Epoch 30: 100%|██████████| 1220/1220 [00:56<00:00, 21.58it/s]
+Epoch 30, Train Loss: 2.3930, Train Acc: 53.93%
+Val Loss: 6.8701, Val Acc: 18.24%
+Epoch 31:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,  523, 1434, 1433, 1434])
+Target: tensor(389)
+Predicted: tensor(389)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> inner source open source
+Decoded target word: benefits
+Decoded prediction: benefits
+-------------------------
+
+Epoch 31: 100%|██████████| 1220/1220 [00:51<00:00, 23.85it/s]
+Epoch 31, Train Loss: 2.3257, Train Acc: 55.19%
+Epoch 32:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.9081, Val Acc: 18.05%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0, 4914,   35,  201,  145, 4915, 4916,   20, 3912, 4917, 4708, 4918])
+Target: tensor(176)
+Predicted: tensor(176)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> invasion of privacy or protective parenting how parents virginity obsession afflicts
+Decoded target word: human
+Decoded prediction: human
+-------------------------
+
+Epoch 32: 100%|██████████| 1220/1220 [00:51<00:00, 23.47it/s]
+Epoch 32, Train Loss: 2.2620, Train Acc: 56.47%
+Val Loss: 6.9377, Val Acc: 18.07%
+Epoch 33:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0, 4507, 6315,   23])
+Target: tensor(907)
+Predicted: tensor(24)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> capture wpforms in
+Decoded target word: google
+Decoded prediction: python
+-------------------------
+
+Epoch 33: 100%|██████████| 1220/1220 [00:54<00:00, 22.19it/s]
+Epoch 33, Train Loss: 2.1990, Train Acc: 57.78%
+Epoch 34:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 6.9846, Val Acc: 17.75%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0, 4263,   29, 2838,  333,   21, 1342,  922,  276])
+Target: tensor(1633)
+Predicted: tensor(14)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> ditch your smart goals use this goal setting
+Decoded target word: method
+Decoded prediction: on
+-------------------------
+
+Epoch 34: 100%|██████████| 1220/1220 [00:55<00:00, 21.98it/s]
+Epoch 34, Train Loss: 2.1406, Train Acc: 59.11%
+Epoch 35:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 7.0147, Val Acc: 17.94%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0, 915, 916, 214,   6])
+Target: tensor(539)
+Predicted: tensor(539)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> azure function job to
+Decoded target word: delete
+Decoded prediction: delete
+-------------------------
+
+Epoch 35: 100%|██████████| 1220/1220 [00:56<00:00, 21.77it/s]
+Epoch 35, Train Loss: 2.0827, Train Acc: 60.30%
+Epoch 36:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 7.0541, Val Acc: 17.80%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,   20,    6,  204,    2, 1586])
+Target: tensor(205)
+Predicted: tensor(205)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> how to shut a project
+Decoded target word: down
+Decoded prediction: down
+-------------------------
+
+Epoch 36: 100%|██████████| 1220/1220 [00:49<00:00, 24.86it/s]
+Epoch 36, Train Loss: 2.0292, Train Acc: 61.15%
+Epoch 37:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 7.0825, Val Acc: 17.90%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,   66, 4309])
+Target: tensor(5781)
+Predicted: tensor(5781)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> understanding cognitive
+Decoded target word: dissonance
+Decoded prediction: dissonance
+-------------------------
+
+Epoch 37: 100%|██████████| 1220/1220 [00:57<00:00, 21.39it/s]
+Epoch 37, Train Loss: 1.9763, Train Acc: 62.30%
+Epoch 38:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 7.1181, Val Acc: 17.58%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+Target: tensor(615)
+Predicted: tensor(1114)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <OOV>
+Decoded target word: big
+Decoded prediction: reasons
+-------------------------
+
+Epoch 38: 100%|██████████| 1220/1220 [00:56<00:00, 21.69it/s]
+Epoch 38, Train Loss: 1.9256, Train Acc: 63.38%
+Epoch 39:   0%|          | 0/1220 [00:00<?, ?it/s]Val Loss: 7.1609, Val Acc: 17.75%
+
+--- First Batch Debug ---
+Input (token IDs): tensor([   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+           0,    0,    0,    0,    0,    0,    0,    0, 1335,   35,   45, 1406])
+Target: tensor(6)
+Predicted: tensor(9)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> importance of data visualization
+Decoded target word: to
+Decoded prediction: with
+-------------------------
+
+Epoch 39: 100%|██████████| 1220/1220 [00:57<00:00, 21.22it/s]
+Epoch 39, Train Loss: 1.8779, Train Acc: 64.68%
+Val Loss: 7.1944, Val Acc: 17.60%
+Epoch 40:   0%|          | 0/1220 [00:00<?, ?it/s]
+--- First Batch Debug ---
+Input (token IDs): tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0, 136,  69,  70, 136,  70,   1])
+Target: tensor(136)
+Predicted: tensor(136)
+Decoded input: <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> <UNK> strong class markup strong markup <OOV>
+Decoded target word: strong
+Decoded prediction: strong
+-------------------------
+
+Epoch 40: 100%|██████████| 1220/1220 [00:53<00:00, 22.74it/s]
+Epoch 40, Train Loss: 1.8290, Train Acc: 65.63%
+Val Loss: 7.2246, Val Acc: 17.59%
+Model Trained and Saved
+Generating text with top-3 suggestions...
+
+Process finished with exit code 0

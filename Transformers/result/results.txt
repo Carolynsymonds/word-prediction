@@ -1,0 +1,30 @@
+Epoch 1/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 392s 588ms/step - accuracy: 0.0283 - loss: 12.1482 - val_accuracy: 0.0480 - val_loss: 13.4017 - learning_rate: 5.0000e-04
+Epoch 2/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 350s 528ms/step - accuracy: 0.0935 - loss: 12.2176 - val_accuracy: 0.0755 - val_loss: 14.4399 - learning_rate: 5.0000e-04
+Epoch 3/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 341s 515ms/step - accuracy: 0.6312 - loss: 8.0486 - val_accuracy: 0.0695 - val_loss: 13.2071 - learning_rate: 5.0000e-04
+Epoch 4/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 346s 521ms/step - accuracy: 0.7893 - loss: 5.6253 - val_accuracy: 0.0653 - val_loss: 14.1180 - learning_rate: 5.0000e-04
+Epoch 5/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 0s 462ms/step - accuracy: 0.8066 - loss: 5.8145
+Epoch 5: ReduceLROnPlateau reducing learning rate to 0.00010000000474974513.
+662/662 ━━━━━━━━━━━━━━━━━━━━ 322s 485ms/step - accuracy: 0.8065 - loss: 5.8149 - val_accuracy: 0.0610 - val_loss: 14.3629 - learning_rate: 5.0000e-04
+Epoch 6/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 332s 501ms/step - accuracy: 0.8885 - loss: 5.4273 - val_accuracy: 0.0689 - val_loss: 12.7305 - learning_rate: 1.0000e-04
+Epoch 7/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 353s 532ms/step - accuracy: 0.9467 - loss: 3.8614 - val_accuracy: 0.0685 - val_loss: 11.5946 - learning_rate: 1.0000e-04
+Epoch 8/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 338s 510ms/step - accuracy: 0.9519 - loss: 2.8516 - val_accuracy: 0.0712 - val_loss: 10.8109 - learning_rate: 1.0000e-04
+Epoch 9/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 338s 509ms/step - accuracy: 0.9536 - loss: 2.1774 - val_accuracy: 0.0670 - val_loss: 10.3602 - learning_rate: 1.0000e-04
+Epoch 10/10
+662/662 ━━━━━━━━━━━━━━━━━━━━ 363s 548ms/step - accuracy: 0.9506 - loss: 1.7531 - val_accuracy: 0.0676 - val_loss: 10.1584 - learning_rate: 1.0000e-04
+Restoring model weights from the end of the best epoch: 10.
+Saving training plots...
+Generating text with top-3 suggestions...
+Top suggestions: ['the', 'a', 'candor']
+Top suggestions: ['president’s', 'biggest', '81']
+Top suggestions: ['team', 'reality', 'praise']
+Final generated text:
+implementation of the president’s team
