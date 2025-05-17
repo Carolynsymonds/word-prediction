@@ -10,7 +10,7 @@ from logger import Logger
 from tqdm import tqdm
 import os
 
-
+#train model function
 def train_model(config_path):
     config = load_config(config_path)
     device = setup_device()
@@ -41,7 +41,7 @@ def train_model(config_path):
             total_tokens += target.numel()
 
         train_acc = total_correct / total_tokens
-
+        #eval of the model
         model.eval()
         with torch.no_grad():
             total_val_loss, val_correct, val_tokens, topk_correct, perplexity_sum = 0, 0, 0, 0, 0
@@ -85,7 +85,7 @@ def train_model(config_path):
 
         # Final evaluation after training
         model.eval()
-        prompt = "The economy is"
+        prompt = "The president said that"
         max_words = 3
 
         tokens = tokenizer(prompt, return_tensors='pt', padding=True, truncation=True)
@@ -97,7 +97,7 @@ def train_model(config_path):
         for _ in range(max_words):
             with torch.no_grad():
                 output = model(generated)
-            next_token_logits = output[-1]  # get logits at last time step
+            next_token_logits = output[-1] 
             next_token_id = next_token_logits.argmax(dim=-1).unsqueeze(0).unsqueeze(0)  
             generated = torch.cat([generated, next_token_id], dim=1)
 
