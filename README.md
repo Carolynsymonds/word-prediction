@@ -35,8 +35,12 @@ Install the required dependencies by running setup.sh (or manually using pip ins
 
 [https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
 
+### Inference
 
-# 🗂 Project structure index
+- To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
+
+
+# Project structure index
 ```
 WordPrediction-LSTM+attention/
 ├── checkpoints/           # Saved models
