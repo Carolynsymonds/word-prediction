@@ -1,0 +1,28 @@
+extended dataset with all articles: Best result
+
+embed_dim=256,
+num_layers=4,
+num_heads=8,
+sequence length: 64
+
+🔵 TRain 4
+Prediction:
+
+“the investigation of his lawyer...”
+➤ Shows coherent, topic-consistent continuation: “investigation”, “lawyer”, “personal business dealings”
+
+Top-3 predictions:
+
+['the', 'it', 'american']
+➤ Reflects general political/news domain tokens, likely because of the diverse scale of training examples
+
+🟡 Train 5
+Prediction:
+
+“would rather fly with a competitor...”
+➤ More specific or idiosyncratic continuation, possibly from memorization or overfitting
+
+Top-3 predictions:
+
+['would', 'alarms', 'will']
+➤ Less stable/general predictions. "alarms" is notably out-of-context, suggesting lower semantic grounding

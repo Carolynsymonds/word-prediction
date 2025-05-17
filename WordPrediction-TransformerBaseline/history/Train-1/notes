@@ -1,39 +1,11 @@
+PROMPT: The president said
+The president said his decision
 
+Top 3 predictions:
+1. his
+2. Mexico
+3. help
 
+2,744,337 training parameters.
 
-
-
-Train - Epoch 0 loss: 5.255 epoch_accuracy: 0.199  top5_accuracy: 0.370
-Val - Epoch 0   loss: 2.188 val_accuracy: 0.267
-New best validation loss: 229.7728
-Model saved to best_model.pt
-Train - Epoch 1 loss: 0.632 epoch_accuracy: 0.547  top5_accuracy: 0.588
-Val - Epoch 1   loss: 0.185 val_accuracy: 0.590
-New best validation loss: 19.4560
-Model saved to best_model.pt
-Train - Epoch 2 loss: 0.131 epoch_accuracy: 0.701  top5_accuracy: 0.661
-Val - Epoch 2   loss: 0.134 val_accuracy: 0.719
-New best validation loss: 14.1115
-Model saved to best_model.pt
-Train - Epoch 3 loss: 0.096 epoch_accuracy: 0.774  top5_accuracy: 0.696
-Val - Epoch 3   loss: 0.123 val_accuracy: 0.784
-New best validation loss: 12.9330
-Model saved to best_model.pt
-Train - Epoch 4 loss: 0.083 epoch_accuracy: 0.818  top5_accuracy: 0.716
-Val - Epoch 4   loss: 0.119 val_accuracy: 0.824
-New best validation loss: 12.4443
-Model saved to best_model.pt
-Train - Epoch 5 loss: 0.077 epoch_accuracy: 0.846  top5_accuracy: 0.730
-Val - Epoch 5   loss: 0.116 val_accuracy: 0.851
-New best validation loss: 12.2024
-Model saved to best_model.pt
-Train - Epoch 6 loss: 0.073 epoch_accuracy: 0.867  top5_accuracy: 0.739
-Val - Epoch 6   loss: 0.115 val_accuracy: 0.870
-New best validation loss: 12.1036
-Model saved to best_model.pt
-Train - Epoch 7 loss: 0.070 epoch_accuracy: 0.882  top5_accuracy: 0.746
-Val - Epoch 7   loss: 0.116 val_accuracy: 0.884
-Train - Epoch 8 loss: 0.069 epoch_accuracy: 0.894  top5_accuracy: 0.752
-Val - Epoch 8   loss: 0.116 val_accuracy: 0.895
-Train - Epoch 9 loss: 0.068 epoch_accuracy: 0.903  top5_accuracy: 0.756
-Val - Epoch 9   loss: 0.118 val_accuracy: 0.904
+CUSTOM TOKENIZER

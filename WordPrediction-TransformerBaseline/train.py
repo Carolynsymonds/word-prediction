@@ -2,24 +2,26 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from dataset import load_dataloader
-from model import TextGen
+from model import TextGen,TextGenSingleAttention
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 from metrics import MetricsLogger
-from utils import plot_metrics, load_config
+from utils import plot_metrics, load_config, LabelSmoothingLoss
 
 def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size):
     model.train()
-    total_tokens = 0
-    correct_tokens = 0
-    correct_top5_tokens = 0
     best_val_loss = float('inf')
     metrics_logger = MetricsLogger()
 
     for epoch in range(epochs):
+        total_tokens = 0
+        correct_tokens = 0
+        correct_top5_tokens = 0
         running_loss = 0
         for input_seq, target_seq in train_dataloader:
+
             input_seq, target_seq = input_seq.to(device), target_seq.to(device)
             outputs = model(input_seq)
+
             target_seq = target_seq.contiguous().view(-1)
             outputs = outputs.view(-1, vocab_size)
 
@@ -27,8 +29,10 @@ def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size
 
             optimizer.zero_grad()
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
             running_loss += loss.detach().cpu().numpy()
+
 
             # Metrics
             # Compute accuracy
@@ -52,6 +56,8 @@ def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size
         val_loss = 0
         model.eval()
         with torch.no_grad():
+            correct_tokens = 0
+            total_tokens = 0
             for input_seq, target_seq in val_dataloader:
                 input_seq, target_seq = input_seq.to(device), target_seq.to(device)
                 outputs = model(input_seq)
@@ -68,6 +74,7 @@ def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size
 
         val_epoch_loss = val_loss / len(val_dataloader)
         val_accuracy = correct_tokens / total_tokens
+
         print(
             f"Epoch {epoch + 1}: "
             f"Train Loss = {train_epoch_loss:.4f}, "
@@ -89,6 +96,7 @@ def train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size
             print(f"Model saved to best_model.pt")
 
     return metrics_logger
+
 if __name__ == "__main__":
     config = load_config('config.yaml')
 
@@ -96,9 +104,13 @@ if __name__ == "__main__":
     batch_size = config['batch_size']
     epochs = config['num_epochs']
     learning_rate = config['learning_rate']
+    embed_dim = config['embed_dim']
+    num_layers = config['num_layers']
+    num_heads = config['num_heads']
 
     train_dataloader, val_dataloader, vocab_size, int_to_word = load_dataloader(sequence_length, batch_size)
 
+    # Option 1: Multi-head attention
     model = TextGen(
         vocab_size=vocab_size,
         embed_dim=100,
@@ -106,18 +118,27 @@ if __name__ == "__main__":
         num_heads=2,
         sequence_length=sequence_length
     ).to(device)
+
+    # Option 2: Single attention
+    # model = TextGenSingleAttention(
+    #     vocab_size=vocab_size,
+    #     embed_dim=100,
+    #     num_layers=2,
+    #     sequence_length=sequence_length
+    # ).to(device)
+
     criterion = nn.CrossEntropyLoss()
+    # criterion = LabelSmoothingLoss(smoothing=0.1, vocab_size=vocab_size)
+
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     print(model)
 
-    # Total parameters and trainable parameters
     total_params = sum(p.numel() for p in model.parameters())
     print(f"{total_params:,} total parameters.")
     total_trainable_params = sum(
         p.numel() for p in model.parameters() if p.requires_grad)
     print(f"{total_trainable_params:,} training parameters.\n")
 
-    # TRAIN
     metrics_logger = train(model, epochs, train_dataloader, val_dataloader, criterion, vocab_size)
 
     plot_metrics(metrics_logger.get_metrics_history(), config['output_dir'])

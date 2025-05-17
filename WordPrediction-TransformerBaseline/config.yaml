@@ -2,9 +2,12 @@
 # Model parameters
 batch_size: 32
 sequence_length: 64
+embed_dim: 256
+num_layers: 4
+num_heads: 8
 
 # Optimized Training parameters
-num_epochs: 25
+num_epochs: 2
 learning_rate: 0.001
 
 # Output settings

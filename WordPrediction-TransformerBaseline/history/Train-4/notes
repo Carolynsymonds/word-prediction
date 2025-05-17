@@ -1,0 +1,13 @@
+tuened parameters
+
+Why Gradient Clipping Helps:
+Prevents exploding gradients in deeper models (like your 4-layer, 256-dim transformer).
+
+Keeps training more stable and reduces erratic loss jumps.
+
+
+Parameter	Reason It’s a Good Choice
+embed_dim=256	More powerful token representations (vs 100). Better captures syntax/semantics.
+num_layers=4	Deep enough for non-trivial language modeling, but still trainable on mid-size datasets.
+num_heads=8	Ideal for embed_dim=256 (each head gets 32 dims). Improves attention diversity.
+vocab_size	Presumably 30522 (BERT) — a good standard with subword-level coverage.

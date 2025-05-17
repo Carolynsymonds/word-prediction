@@ -1,0 +1,30 @@
+Updated model a bit
+STAY WITH THIS ONE, (NOT use Train-2)
+BERT.
+
+
+Vocab size: 30522
+TextGen(
+  (pos_encoder): PositionalEncoding(
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (emb): Embedding(30522, 100)
+  (transformer_blocks): ModuleList(
+    (0-1): 2 x TransformerEncoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=100, out_features=100, bias=True)
+      )
+      (linear1): Linear(in_features=100, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=100, bias=True)
+      (norm1): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((100,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.1, inplace=False)
+      (dropout2): Dropout(p=0.1, inplace=False)
+    )
+  )
+  (linear): Linear(in_features=100, out_features=30522, bias=True)
+  (dropout): Dropout(p=0.2, inplace=False)
+)
+7,040,018 total parameters.
+7,040,018 training parameters.
