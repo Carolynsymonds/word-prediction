@@ -21,17 +21,17 @@ There are three architectures:
 
 - To run inference, use the predict.py file located within each architecture’s folder. This script loads and uses the best-performing model checkpoint for prediction.
 
-### Training:
+## Training
 
 Each model has its own train.py file located inside its corresponding folder.
 
 To adjust hyperparameters like number of epochs, batch size, or learning rate, modify the config.yaml file located inside each model's folder.
 
-### Evaluation:
+## Evaluation
 
 Each architecture has their best model saved under their folder. Defined as prediction.
 
-### Setup:
+## Setup
 
 Install the required dependencies by running setup.sh (or manually using pip install -r requirements.txt).
 
