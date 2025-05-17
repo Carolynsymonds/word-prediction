@@ -4,30 +4,32 @@
 
 Before running the project, please follow these steps carefully:
 
-Download the dataset from the link provided in the "Datasets" section below.
+- Run the requirements txt fil
+- Select which architecture to train
+- Run the trian.py folder
+- (Datasets are already defined on the folder)
+- For doubts in the folder structure, check the section below which represents it.
 
-Ensure correct folder structure:
+### Model versions:
 
-Place the datasets under the folder /dataset
+There are three architectures: WordPrediction-LSTM+attention, WordPrediction-LSTMBaseline and WordPrediction-TransformerBaseline
 
-###Model versions:
-
-There are three main: WordPrediction-LSTM+attention, WordPrediction-LSTMBaseline and WordPrediction-TransformerBaseline
-
-###Training:
+### Training:
 
 Each model has its own train.py file located inside its corresponding folder.
 
 To adjust hyperparameters like number of epochs, batch size, or learning rate, modify the config.yaml file located inside each model's folder.
 
-###Evaluation: 
+### Evaluation:
+
 Each architecture has their best model saved under their folder. Defined as prediction.
 
-###Setup:
+### Setup:
 
 Install the required dependencies by running setup.sh (or manually using pip install -r requirements.txt).
 
 ## Dataset
+
 [https://www.kaggle.com/datasets/arnabchaki/medium-articles-dataset](https://www.kaggle.com/datasets/aashita/nyt-comments/data)
 
 
